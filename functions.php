@@ -31,7 +31,16 @@ add_action('wp_enqueue_scripts', 'enqueue_custom_styles');
 
 //js
 function ajouter_script_js() {
-    wp_enqueue_script('scripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.0.0', true);
+    wp_enqueue_script('scripts', get_template_directory_uri() . '/js/scripts.js', array(),false , true);
 }
 add_action('wp_enqueue_scripts', 'ajouter_script_js');
+
+//page contact modale
+function ajouter_code_sur_page_contact() {
+    if (is_page('contact')) {
+        get_header(); 
+        get_template_part( 'templates_part' );
+    }
+}
+add_action('wp', 'ajouter_code_sur_page_contact');
 
