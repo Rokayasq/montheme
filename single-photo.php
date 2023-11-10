@@ -38,37 +38,70 @@ get_header(); ?>
                     if ($photo_reference) {
                         echo '<p>Référence: ' . esc_html($photo_reference) . '</p>';
                     }
-                   
+
+                
                     // Récupérer et afficher les catégories personnalisées (taxonomies)
-                    $categories = get_the_terms(get_the_ID(), 'categorie');
-                    if ($categories && !is_wp_error($categories)) {
-                        echo '<p>Catégories: ';
+                    // CATEGORIES
+                    echo '<h2>Catégories</h2>';
+                    // Remplacez 'nom_de_la_taxonomie' par le nom de votre taxonomie
+                    $categorie = 'categorie';
+                    // Remplacez 'nom_du_post_type' par le nom de votre type de publication personnalisé (CPT)
+                    $post_type = 'photo';
+                    // Remplacez $post_id par l'ID de votre article personnalisé
+                    $post_id = get_the_ID();
+                    // Récupérer les termes de taxonomie associés à l'article
+                    $categories = get_terms(array(
+                        'taxonomy' => $categorie,
+                    ));
+                    if (is_array($categories) && !empty($categories)) {
+                        echo '<ul>';
                         foreach ($categories as $category) {
-                            echo '<a href="' . esc_url(get_term_link($category)) . '">' . esc_html($category->name) . '</a>, ';
+                            echo '<li>' . $category->name . '</li>';
                         }
-                        echo '</p>';
+                        echo '</ul>';
+                    } else {
+                        echo 'Aucune catégorie trouvée.';
                     }
 
-                    // Récupérer et afficher les formats personnalisés
-                    $formats = get_the_terms(get_the_ID(), 'format');
-                    if ($formats && !is_wp_error($formats)) {
-                        echo '<p>Formats: ';
+                    // FORMATS
+                    echo '<h2>Formats</h2>';
+                    $format = 'format';
+                    $post_type = 'photo';
+                    $post_id = get_the_ID();
+                    $formats = get_terms(array(
+                        'taxonomy' => $format,
+                        'object_ids' => $post_id,
+                        'hide_empty' => false,
+                    ));
+                    if (is_array($formats) && !empty($formats)) {
+                        echo '<ul>';
                         foreach ($formats as $format) {
-                            echo esc_html($format->name) . ', ';
+                            echo '<li>' . $format->name . '</li>';
                         }
-                        echo '</p>';
+                        echo '</ul>';
+                    } else {
+                        echo 'Aucun format trouvé.';
                     }
-
-                    // Récupérer et afficher les valeurs de la taxonomie 'trier_par'
-                    $trier_par = get_the_terms(get_the_ID(), 'trier_par');
-                    if ($trier_par && !is_wp_error($trier_par)) {
-                        echo '<p>Trier par: ';
+                    
+                    // TRIER PAR
+                    echo '<h2>Trier par</h2>';
+                    $trier_par = 'trier_par';
+                    $post_type = 'photo';
+                    $post_id = get_the_ID();
+                    $trier_par = get_terms(array(
+                        'taxonomy' => $trier_par,
+                        'object_ids' => $post_id,
+                        'hide_empty' => false,
+                    ));
+                    if (is_array($trier_par) && !empty($trier_par)) {
+                        echo '<ul>';
                         foreach ($trier_par as $term) {
-                            echo esc_html($term->name) . ', ';
+                            echo '<li>' . $term->name . '</li>';
                         }
-                        echo '</p>';
+                        echo '</ul>';
+                    } else {
+                        echo 'Aucune date trouvé.';
                     }
-
                     ?>
                 </div>
 
