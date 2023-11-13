@@ -96,9 +96,8 @@ header{
     justify-content: center;
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
-    font-weight: 500;
     line-height: 18px;
-}
+}  
 [name="your-name"]{
     border: 1px solid rgba(184, 187, 194, 1);
     border-radius: 8px;
@@ -136,5 +135,188 @@ p .wpcf7-submit{
     border-radius: 2px;
     border: 2px rgba(0, 0, 0, 0.02);
     background: rgba(216, 216, 216, 1);
+}
 
+
+/* Police Google Fonts */
+@font-face {
+    font-family: 'Space Mono';
+    src: url('assets/fonts/Space_Mono/SpaceMono-Regular.woff2') format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    src: url('assets/fonts/Space_Mono/SpaceMono-Italic.woff2') format("woff2");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('assets/fonts/Poppins/Poppins-Medium.woff2') format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('assets/fonts/Poppins/Poppins-Light.woff2') format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+#content .site-main article img{
+    width: 564px;
+    height: 495px;
+    object-fit: cover;
+    margin-right: 2vh;
+}
+
+#content .site-main{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    flex-direction: row-reverse;
+    justify-content: center;
+
+}
+
+#primary .site-main .entry-content .description{
+    width: 50%;
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+    margin-bottom: 35px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#primary .site-main .entry-content .image{
+    width: calc(50% - 30px);
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+#primary .site-main .entry-content{
+    display: flex;
+    align-items: flex-end;
+}
+
+.entry-title{
+    font-family: 'Space Mono', monospace;
+    font-size: 66px;
+    font-weight: 400;
+    line-height: 58px;
+    font-style: italic;
+    text-transform: uppercase;
+    width: 50%;
+}
+
+.entry-header{
+    padding-bottom: 100px;
+}
+
+.champs{
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    text-transform: uppercase;
+}
+
+.taxonomies{
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    text-transform: uppercase;
+}
+
+.bloc3{
+    height: calc(118px - 36px);
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.bloc3 p{
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 21px;
+}
+.ctct-bouton {
+    width: 272px;
+    Height: 50px;
+    padding: 8px 15px;
+    background-color: rgba(216, 216, 216, 1);
+    color: rgba(0, 0, 0, 1);
+    font-size: 12px; 
+    border: none; 
+    border-radius: 2px; 
+    cursor: pointer; 
+    margin-right: 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+  }
+
+.ctct-bouton:hover {
+background-color: rgba(0, 0, 0, 1);
+color: rgba(255, 255, 255, 1);
+}
+
+.apparenté p{
+font-family: 'Space Mono', monospace;
+font-size: 18px;
+font-weight: 400;
+line-height: 27px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+margin: 80px 0 50px 0;
+}
+
+.apparenté{
+margin-left: 20px;
+border-top: 1px solid rgba(0, 0, 0, 1);
+}
+
+.deuxphotos img{
+width: 564px;
+height: 495px;
+object-fit: cover;
+margin-right: 2vh;
+}
+
+.deuxphotos{
+display: flex;
+justify-content: center;
+}
+
+.ttes-photos {
+width: 272px;
+Height: 50px;
+padding: 8px 15px;
+background-color: rgba(216, 216, 216, 1);
+color: rgba(0, 0, 0, 1);
+font-size: 12px; 
+border: none; 
+border-radius: 2px; 
+cursor: pointer; 
+margin-right: 20px;
+font-family: 'Space Mono', monospace;
+font-size: 12px;
+font-weight: 400;
+line-height: 18px;
+}
+
+.bouton{
+display: flex;
+justify-content: center;
+margin: 50px 0 80px 0; 
 }
