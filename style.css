@@ -2,6 +2,10 @@ html{
     margin-top: 0px !important;
 }
 
+body{
+    margin: 0;
+}
+
 header{
     display: flex !important;
     height: 80px;
@@ -156,6 +160,14 @@ p .wpcf7-submit{
 }
 
 @font-face {
+    font-family: 'Space Mono';
+    src: url('assets/fonts/Space_Mono/SpaceMono-BoldItalic.woff2') format("woff2");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url('assets/fonts/Poppins/Poppins-Medium.woff2') format("woff2");
     font-weight: normal;
@@ -171,6 +183,7 @@ p .wpcf7-submit{
     font-display: swap;
 }
 
+/* Page INFOS */
 #content .site-main article img{
     width: 564px;
     height: 495px;
@@ -183,7 +196,6 @@ p .wpcf7-submit{
     flex-wrap: wrap-reverse;
     flex-direction: row-reverse;
     justify-content: center;
-
 }
 
 #primary .site-main .entry-content .description{
@@ -315,8 +327,55 @@ font-weight: 400;
 line-height: 18px;
 }
 
+.ttes-photos:hover {
+    background-color: rgba(0, 0, 0, 1);
+    color: rgba(255, 255, 255, 1);
+    }
+
 .bouton{
 display: flex;
 justify-content: center;
 margin: 50px 0 80px 0; 
 }
+
+/* HERO HEADER */
+#hero-content .site-main article img{
+    width: 1440px;
+    height: 962px;
+    object-fit: cover;
+}
+
+#hero-content .site-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container {
+    position: relative;
+    text-align: center;
+}
+
+.image-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.image-title h2{
+    font-family: 'Space Mono', monospace;
+    font-size: 96px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 142px;
+    -webkit-text-stroke: 3px rgba(255, 255, 255, 1);
+    -webkit-text-fill-color: transparent; 
+    white-space: nowrap; /* Empêche le texte de se replier sur plusieurs lignes */
+}
+
+
+
+
+
+/*@media (max-width: 1024px) */
