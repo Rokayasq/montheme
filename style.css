@@ -426,4 +426,71 @@ p .wpcf7-submit{
 
 
     
+/* FILTRES */
+.images{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.images img{
+    width: 564px;
+    height: 495px;
+    object-fit: cover;
+    margin-right: 2vh;
+}
+
+.image{
+    margin-bottom: 2vh;
+}
+
+#filter-container {
+    cursor: pointer;
+    display: grid;
+    align-items: center;
+    width: 260px;
+    height: 42px;
+    border-radius: 8px;
+    border: 1px solid rgba(184, 187, 194, 1);
+    margin-right: 30px;
+    
+}
+
+#filter-category, #filter-format, #filter-trier_par{
+    padding: 0 0 6px 20px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.03em;
+    cursor: inherit;
+
+}
+
+.filtres{
+    display: flex;
+    margin: 80px 20px 50px 20px;
+}
+
+.trier{
+    margin-left: auto;
+}
+
+#filter-category option:hover {
+    background-color: rgba(255, 214, 214, 1);
+    ;
+}
+
+#filter-category option:focus {
+    background-color: rgba(254, 88, 88, 1);
+    ;
+}
+
+#filter-category option:active {
+    background-color: rgba(224, 0, 0, 1);
+    ;
+}
 /*@media (max-width: 1024px) */
+
+
