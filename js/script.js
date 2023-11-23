@@ -46,3 +46,73 @@
 
     });
 })(jQuery);
+
+
+// categorie
+jQuery(document).ready(function($) {
+    $('#filter-category').change(function() {
+        var category_id = $(this).val();
+
+        $.ajax({
+            type: 'POST',
+            url: myAjax.ajaxurl, // WordPress fournit cette variable pour l'URL Ajax
+            data: {
+                action: 'filter_images_cat',
+                category_id: category_id,
+            },
+            success: function(response) {
+                $('.images').html(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+});
+
+// format
+jQuery(document).ready(function($) {
+    $('#filter-format').change(function() {
+        var format_id = $(this).val();
+
+        $.ajax({
+            type: 'POST',
+            url: myAjax.ajaxurl, // WordPress fournit cette variable pour l'URL Ajax
+            data: {
+                action: 'filter_images_format',
+                format_id: format_id,
+            },
+            success: function(response) {
+                $('.images').html(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+});
+
+// date
+jQuery(document).ready(function ($) {
+    $('#filter-trier_par').change(function () {
+        var trier_par_id = $(this).val();
+
+        // Si l'option sélectionnée est "Plus récentes" ou "Plus anciennes"
+        if (trier_par_id === 'recentes' || trier_par_id === 'anciennes') {
+            $.ajax({
+                type: 'POST',
+                url: myAjax.ajaxurl,
+                data: {
+                    action: 'filter_images_date',
+                    filter: trier_par_id,
+                },
+                success: function (response) {
+                    $('.images').html(response);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+    });
+});
