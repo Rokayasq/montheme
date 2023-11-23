@@ -43,18 +43,98 @@ get_header();
     </main>
 </div>
 
+<!-- Selects -->
+<div class="filtres">
+    <!-- CATEGORIES -->
+    <div  id="filter-container">
+        <?php
+        $taxonomy = 'categorie'; 
+        $post_id = get_the_ID();
+
+        // Récupérer toutes les catégories de la taxonomie
+        $categories = get_terms(array(
+            'taxonomy' => $taxonomy,
+            'hide_empty' => false,
+        ));
+
+        if (is_array($categories) && !empty($categories)) {
+            echo '<label for="filter-category"> </label>';
+            echo '<select id="filter-category" name="filter-category">';
+            echo '<option value="all">CATÉGORIES</option>';
+
+            foreach ($categories as $category) {
+                echo '<option value="' . $category->term_id . '">' . $category->name . '</option>';
+            }
+
+            echo '</select>';
+        } 
+    ?>
+    </div>
+
+<!-- FORMAT -->
+    <div id="filter-container">
+        <?php
+        $taxonomy = 'format'; 
+        $post_id = get_the_ID();
+
+        // Récupérer toutes les catégories de la taxonomie
+        $formats = get_terms(array(
+            'taxonomy' => $taxonomy,
+            'hide_empty' => false,
+        ));
+
+        if (is_array($formats) && !empty($formats)) {
+            echo '<label for="filter-format"> </label>';
+            echo '<select id="filter-format" name="filter-format">';
+            echo '<option value="all">FORMATS</option>';
+
+            foreach ($formats as $format) {
+                echo '<option value="' . $format->term_id . '">' . $format->name . '</option>';
+            }
+
+            echo '</select>';
+        } 
+    ?>
+    </div>
+
+    <!-- TRIER PAR -->
+    <div class="trier" id="filter-container">
+        <?php
+        $taxonomy = 'trier_par'; 
+        $post_id = get_the_ID();
+
+        // Récupérer toutes les catégories de la taxonomie
+        $trier_pars = get_terms(array(
+            'taxonomy' => $taxonomy,
+            'hide_empty' => false,
+        ));
+
+        if (is_array($trier_pars) && !empty($trier_pars)) {
+            echo '<label for="filter-trier_par"></label>';
+            echo '<select id="filter-trier_par" name="filter-trier_par" class="trier-par-select">' ;
+            echo '<option value="all">TRIER PAR</option>' ;
+            echo '<option value="recentes" class="trier-par-option" data-sort="DESC">Plus récentes</option>' ;
+            echo '<option value="anciennes" class="trier-par-option" data-sort="ASC">Plus anciennes</option>' ;
+            echo '</select>';
+        } 
+        ?>
+    </div>
+
+</div>   
+
 <!-- 8 premieres photos -->
-<div id="content" class="site-content">
-<main id="main" class="site-main">
+<div class="images">
+    <div id="content" class="site-content">
+        <main id="main" class="site-main">
     <?php
     // Boucle WordPress pour récupérer les articles du type de contenu "photo"
     $args = array(
         'post_type' => 'photo', // Nom du custom post type
-        'posts_per_page' => 8,  // Afficher tous les articles, vous pouvez ajuster cela selon vos besoins
+        'posts_per_page' => 8, 
         'order'          => 'ASC',
     );
 
-    $photo_query = new WP_Query($args);
+    $photo_query = new WP_Query($args); 
 
     if ($photo_query->have_posts()) :
         while ($photo_query->have_posts()) :
@@ -76,14 +156,13 @@ get_header();
         endwhile;
         wp_reset_postdata();
     else :
-        // Si aucun article n'est trouvé, affiche un message par défaut
         echo 'Aucune photo trouvée.';
     endif;
 
     ?>
     
-</main>
-</div>
+        </main>
+    </div>
 
 <!-- Charger plus -->
 <?php if (wp_count_posts('photo')->publish) : ?>
@@ -118,6 +197,7 @@ get_header();
     </ul>
 
 <?php endif; ?>
+</div>
 
 <?php
 get_footer(); 
