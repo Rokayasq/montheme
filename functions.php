@@ -67,9 +67,14 @@ function enqueue_custom_scripts() {
             'nonce'   => wp_create_nonce('your_custom_nonce'),
         )
     );
+
+    // Passer la valeur de ajaxurl à votre script JavaScript
+    wp_localize_script('custom-ajax-script', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
 }
+
 // Hook the function to the wp_enqueue_scripts action
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
 
 //charger plus
 add_action('wp_ajax_capitaine_load_photos', 'capitaine_load_photos');
@@ -134,3 +139,159 @@ function capitaine_load_photos() {
     // Envoyer les données au navigateur
     wp_send_json_success($html);
 }
+
+//FILTRES
+
+
+//CATEGORIES
+function filter_images_cat() {
+    $category_id = $_POST['category_id'];
+
+    // Utilisez WP_Query pour récupérer les images de la catégorie sélectionnée
+    $query = new WP_Query(array(
+        'post_type' => 'photo', // Assurez-vous que le type de publication est correct
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'categorie', // Assurez-vous que le nom de la taxonomie est correct
+                'field' => 'id',
+                'terms' => $category_id,
+            ),
+        ),
+    ));
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            ?>
+            <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
+                <?php
+                // Récupérez l'URL de la page associée à l'image
+                $post_permalink = get_permalink();
+
+                // Affichez vos images ici, enveloppées dans une balise <a>
+                echo '<a href="' . esc_url($post_permalink) . '">';
+                echo '<img class="image" src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '">';
+                echo '</a>';
+                ?>
+            </article>
+            <?php
+        }
+        wp_reset_postdata();
+    } else {
+        echo 'Aucune image trouvée.';
+    }
+
+    die();
+}
+add_action('wp_ajax_filter_images_cat', 'filter_images_cat'); // Hook pour les utilisateurs connectés
+add_action('wp_ajax_nopriv_filter_images_cat', 'filter_images_cat'); // Hook pour les utilisateurs non connectés
+
+
+
+//FORMATS
+function filter_images_format() {
+    $format_id = $_POST['format_id'];
+
+    // Utilisez WP_Query pour récupérer les images de la catégorie sélectionnée
+    $query = new WP_Query(array(
+        'post_type' => 'photo', // Assurez-vous que le type de publication est correct
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'format', // Assurez-vous que le nom de la taxonomie est correct
+                'field' => 'id',
+                'terms' => $format_id,
+            ),
+        ),
+    ));
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            ?>
+            <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
+                <?php
+                // Récupérez l'URL de la page associée à l'image
+                $post_permalink = get_permalink();
+
+                // Affichez vos images ici, enveloppées dans une balise <a>
+                echo '<a href="' . esc_url($post_permalink) . '">';
+                echo '<img class="image" src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '">';
+                echo '</a>';
+                ?>
+            </article>
+            <?php
+        }
+        wp_reset_postdata();
+    } else {
+        echo 'Aucune image trouvée.';
+    }
+
+    die();
+}
+add_action('wp_ajax_filter_images_format', 'filter_images_format'); // Hook pour les utilisateurs connectés
+add_action('wp_ajax_nopriv_filter_images_format', 'filter_images_format'); // Hook pour les utilisateurs non connectés
+
+
+// Date
+function filter_images_date() {
+    $sort_direction = $_POST['filter']; // 'anciennes' or 'recentes'
+
+    if ($sort_direction == 'anciennes') {
+        $sort_direction = 'ASC'; // Order by oldest first
+    } elseif ($sort_direction == 'recentes') {
+        $sort_direction = 'DESC'; // Order by newest first
+    }
+
+    // Récupérer les termes de la taxonomie 'trier_par'
+    $terms = get_terms(array(
+        'taxonomy' => 'trier_par',
+        'orderby' => 'name',
+        'order' => $sort_direction,
+    ));
+
+    if (!empty($terms)) {
+        foreach ($terms as $term) {
+            // Récupérer les images pour chaque terme
+            $args = array(
+                'post_type' => 'photo',
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'trier_par',
+                        'field' => 'id',
+                        'terms' => $term->term_id,
+                    ),
+                ),
+                'orderby' => 'date',
+                'order' => $sort_direction,
+            );
+
+            $query = new WP_Query($args);
+
+            if ($query->have_posts()) {
+                while ($query->have_posts()) {
+                    $query->the_post();
+                    ?>
+                    <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
+                        <?php
+                        $post_permalink = get_permalink();
+                        echo '<a href="' . esc_url($post_permalink) . '">';
+                        echo '<img class="image" src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '">';
+                        echo '</a>';
+                        ?>
+                    </article>
+                    <?php
+                }
+                wp_reset_postdata();
+            } else {
+                echo 'Aucune image trouvée pour le terme ' . $term->name;
+            }
+        }
+    } else {
+        echo 'Aucun terme trouvé dans la taxonomie "trier_par".';
+    }
+
+    die();
+}
+
+add_action('wp_ajax_filter_images_date', 'filter_images_date');
+add_action('wp_ajax_nopriv_filter_images_date', 'filter_images_date');
