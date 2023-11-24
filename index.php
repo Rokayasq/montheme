@@ -140,18 +140,28 @@ get_header();
         while ($photo_query->have_posts()) :
             $photo_query->the_post();
     ?>
-            <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
 
-                <div class="entry-content">
-                    <?php
-                    // Ajoutez le lien vers l'article complet
-                    $post_url = get_permalink();
-                    ?>
-                    <a href="<?php echo esc_url($post_url); ?>">
-                        <?php the_content(); ?>
-                    </a>
+    <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
+        <div class="entry-content">
+            <?php
+            // Ajoutez le lien vers l'article complet
+            $post_url = get_permalink();
+            ?>
+
+            <?php the_content(); ?>
+
+            <div class="image-container">
+                <a class="eye-cont" href="<?php echo esc_url($post_url); ?>" class="image-link" onclick="openLightbox('<?php echo esc_url(wp_get_attachment_url(get_post_thumbnail_id())); ?>')">
+                    <i class="fa-regular fa-eye fa-2xl"></i>
+                </a>
+                <div class="full-icon" onmouseover="showBetaIcon(this)" onmouseout="hideBetaIcon(this)" onclick="openLightbox('<?php echo esc_url(wp_get_attachment_url(get_post_thumbnail_id())); ?>')">
+                    <i class="fa-solid fa-expand"></i>
                 </div>
-            </article>
+            </div>
+        </div>
+    </article>
+
+
     <?php
         endwhile;
         wp_reset_postdata();
@@ -198,6 +208,7 @@ get_header();
 
 <?php endif; ?>
 </div>
+
 
 <?php
 get_footer(); 
