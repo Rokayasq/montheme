@@ -4,12 +4,15 @@ html{
 
 body{
     margin: 0;
+    overflow-x: hidden;
 }
 
 header{
     display: flex !important;
     height: 80px;
     justify-content: space-between;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header-menu{
@@ -27,12 +30,18 @@ header{
     justify-content: flex-end;
     list-style-type: none;
     margin-right: 150px;
+    white-space: nowrap;
 }
 
 #logo{
     display: flex;
     align-items: center;
-    margin-left: 150px;
+    margin-left: 50px;
+}
+
+#logo img{
+    width: 216px;
+    height: 14px;
 }
 
 .header-menu ul li a{
@@ -64,37 +73,44 @@ header{
 
 /* MODALE */
 /* Modal Header */
-.modal-header {
+
+#ContactModal .modal-header {
     padding: 15px 0;
 }
 
 /* Modal Content */
-.modal-content {
-    position: relative;
+#ContactModal .modal-content {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: #fefefe;
     margin: auto;
     padding: 0;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
+    /* -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s; 
     animation-name: animatetop;
-    animation-duration: 0.4s;
+    animation-duration: 0.4s; */
     width: 597px;
     height: 769px;
     border: 5px solid rgba(0, 0, 0, 1);
+    opacity: 1;
+    z-index: 1000;
 }
 
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
+ /* CONTact */
+ .contact-overlay{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 200;
 }
-
-@keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
-}
-
 .wpcf7{
     display: flex;
     justify-content: center;
@@ -190,11 +206,8 @@ p .wpcf7-submit{
 }
 
 #content .site-main article{
-    width: 564px;
-    height: 495px;
     object-fit: cover;
     margin-right: 2vh;
-    margin-bottom: 3vh;
 }
 
 #content .site-main article img{
@@ -247,6 +260,7 @@ p .wpcf7-submit{
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
@@ -255,9 +269,13 @@ p .wpcf7-submit{
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
-
+.bloc{
+    display: flex;
+    justify-content: space-between;
+}
 .bloc3{
     height: calc(118px - 36px);
     width: 50%;
@@ -265,7 +283,6 @@ p .wpcf7-submit{
     justify-content: space-between;
     margin-left: 20px;
 }
-
 .bloc3 p{
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
@@ -313,7 +330,7 @@ p .wpcf7-submit{
     width: 564px;
     height: 495px;
     object-fit: cover;
-    margin-right: 2vh;
+    /* margin-right: 2vh; */
 }
 
 .deuxphotos{
@@ -396,11 +413,15 @@ p .wpcf7-submit{
     padding: 0;
 }
 
+.photos article{
+    margin-right: 2vh
+}
+
+
 .photos article img {
     width: 564px;
     height: 495px;
     object-fit: cover;
-    margin-right: 2vh;
 }
 
 .photos-load-button{
@@ -430,9 +451,6 @@ p .wpcf7-submit{
     justify-content: center;
     margin: 30px 0 50px 0;
     }
-
-
-    
 /* FILTRES */
 .images{
     display: flex;
@@ -444,14 +462,18 @@ p .wpcf7-submit{
     width: 564px;
     height: 495px;
     object-fit: cover;
-    margin-right: 2vh;
+}
+
+.images article{
+    margin-right: 14px;
+    margin-bottom: 8px;
 }
 
 .image{
     margin-bottom: 2vh;
 }
 
-#filter-container {
+ /* #filter-container {
     cursor: pointer;
     align-items: center;
     width: 260px;
@@ -460,9 +482,9 @@ p .wpcf7-submit{
     border: 1px solid rgba(184, 187, 194, 1);
     margin-right: 30px;
     display: flex;
-}
+} */
 
-#filter-category, #filter-format, #filter-trier_par{
+/* #filter-category, #filter-format, #filter-trier_par{
     border: none;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
@@ -472,9 +494,9 @@ p .wpcf7-submit{
     cursor: inherit;
     appearance: none;
     margin-left: 20px;
-}
+}  */
 
-#filter-container::after {
+/* #filter-container::after {
     content: "";
     width: 0.8em;
     height: 0.5em;
@@ -482,38 +504,79 @@ p .wpcf7-submit{
     clip-path: polygon(0 0, 50% 100%, 100% 0); 
     margin-left: auto;
     margin-right: 20px;
-}
+} */
 
 .filtres{
     display: flex;
     margin: 80px 20px 50px 20px;
 }
 
+#filter-category, #filter-format, #filter-trier_par{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.03em;
+    margin-left: 20px;
+    margin-right: 30px;
+    border-radius: 8px;
+    height: 42px;
+    width: 260px;
+    padding-left: 20px;
+} 
+
 .trier{
     margin-left: auto;
 }
 
-/* #filter-category option:hover {
+#filter-container option:hover {
     background-color: rgba(255, 214, 214, 1);
-    ;
 }
 
-#filter-category option:focus {
+#filter-container option:focus {
     background-color: rgba(254, 88, 88, 1);
-    ;
 }
 
-#filter-category option:active {
+#filter-container option:active {
     background-color: rgba(224, 0, 0, 1);
-    ;
+}
+
+/* .image-filtre{
+    margin:1vh 1vh;
 } */
 
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 99%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond noir transparent à 80% */
+    opacity: 0;
+    /* padding: 10px; */
+}
 
+.entry-content:hover .image-overlay {
+    opacity: 1;
+
+}
 /* LIGHTBOX */
+.lightbox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2; 
+    width: 100%;
+    height: 100%;
+    transition: opacity .3s;
+}
+
 .lightbox__container {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     min-height: 100vh;
     margin: 0 50px;
   }
@@ -525,13 +588,14 @@ p .wpcf7-submit{
     height: 100%;
     position: fixed;
     top: 0;
-    right: 100px;
+    right: 20px;
     margin-top: -14px;
     z-index: 11;
     text-indent: -3000px;
     cursor: pointer;
     display: block;
     transition: transform 0.3s;
+    color:white;
   }
 
 .lightbox__next:hover{
@@ -545,7 +609,7 @@ p .wpcf7-submit{
     height: 100%;
     position: fixed;
     top: 0;
-    left: 100px !important;
+    left: 20px !important;
     margin-top: -14px;
     z-index: 11;
     text-indent: -3000px;
@@ -574,32 +638,19 @@ p .wpcf7-submit{
 }
 
 .lightbox__container img{
-    width: 564px;
-    height: 495px;
+    max-width: 85%;
+    height: auto;
   }
-
-
 
 .lightbox__container {
     margin: 0 100px ;
   }
 
-.lightbox {
-    display: none; /* cachée par défaut */
-    position: fixed; /* fixée et qui prend tout l'écran */
-    z-index: 1000; /* Pour être sûr de passer au dessus du reste */
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0,0,0,.7); /* noire avec transparence */
-    background-size: contain; /* l'image occupe tout l'espace disponible */
-    background-repeat: no-repeat; 
-    background-position: center;
-    cursor: pointer; /* Le curseur a la même forme que sur un lien */
+.lightbox .fadeOut{
+    opacity: 0;
 }
 
-
+/* Icones */
 .entry-content {
     position: relative;
 }
@@ -607,7 +658,7 @@ p .wpcf7-submit{
 .fa-eye {
     position: absolute;
     top: 50%;
-    left:50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     color: white;
     opacity:0;
@@ -615,16 +666,393 @@ p .wpcf7-submit{
 }
 
 
+.fa-solid {
+    position: absolute;
+    top: 5%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    color: white;
+    opacity:0;
+    z-index: 22;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+
 .images figure{
     position: relative;
-    display: inline-block; /* Assure que le conteneur s'ajuste à la taille de l'image */
+    display: inline-block; 
+    padding: 10px;
+    margin: 0;
 }
 .images figure:hover::after {
-    content: ""; /* Obligatoire pour que l'élément soit rendu */
+    content: ""; 
     position: absolute;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+
+.overlay {
+    display: none;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1; /* Set the overlay above other elements */
+  }
+
+/* Styles for the modal content */
+#openModalIcon {
+  z-index: 1; 
+  cursor: pointer;
+}
+
+.categorie{
+    color: white;
+    z-index:1;
+    position: absolute;
+    top: 87%;
+    right: 3%;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.1em;   
+    text-transform: uppercase; 
+}
+.reference{
+    color: white;
+    z-index:1;
+    position: absolute;
+    top: 87%;
+    left: 3%;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.1em;  
+}
+.cat-ref{
+    opacity:0;
+    display: none;
+}
+.main-navigation{
+    display: none;
+}
+/* NAVIGATION PAGE SINGLE */
+.bloc31{
+    position: relative;
+    margin-right: 20px;
+}
+.navigation-arrows {
+    display: flex;
+    flex-direction: column;
+}
+.nav-next{
+    background: url(../montheme/assets/images/nav-next.svg) center center / 93px 18px no-repeat;
+    width: 100%;
+    height: 100%;
+    top: 30%;
+    left: 30%;
+    position: absolute;
+    cursor: pointer;
+    transform: scale(0.5);
+  }
+.nav-prev{
+    background: url(../montheme/assets/images/nav-prev.svg) center center / 93px 18px no-repeat;
+    width: 100%;
+    height: 100%;
+    top: 30%;
+    left: -35%;
+    position: absolute;
+    cursor: pointer;
+    transform: scale(0.5);
+}
+.petite-img img{
+    position: relative;
+    width: 81px;
+    height: 71px;
+    object-fit: cover;
+    top: -20px;
+}
+.nav-next img{
+    display: flex;
+}
+
+/* MOBIILE 767.98px */
+@media only screen and (max-width: 768px) { 
+    /* HERO */
+    #hero-content .site-main article img {
+        height: 253px;
+        object-fit: cover;
+    }
+    .image-title h2 {
+        font-family: 'Space Mono', monospace;
+        font-size: 27.59px;
+        font-style: italic;
+        font-weight: 700;
+        line-height: 40.86px;
+    }
+    .images img {
+        width: 317.66px;
+        height: 278.8px;
+        object-fit: cover;
+    }
+    .photos article img {
+        width: 317.66px;
+        height: 278.8px;
+        object-fit: cover;
+    }
+    .photos {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    #content .site-main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .images{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .filtres {
+        overflow-x: auto;
+        margin: 20px 20px 40px 20px;
+    }
+    #filter-category, #filter-format, #filter-trier_par {
+        width: 270px;
+        height: 43px;
+    }
+    .footer-content ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 208px ;
+        padding-left: 0px;
+    }
+    .header-menu {
+        display: none; /* Par défaut, le bouton est caché */
+        cursor: pointer;
+    }
+
+    #logo img{
+        width: 138px;
+        height: 9px;
+    }
+    
+    /* MENU BURGER */
+    .main-navigation{
+        margin-right: 50px;
+    }
+    .menu-toggle {
+        display: block;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    #menu-items {
+        display: none; /* Cache les éléments de menu par défaut */
+        position: fixed;
+        opacity: 0 !important;
+        background-color: #E00000;
+        width: 100%;
+        height: 3200px;
+        z-index: 99 !important;
+        padding:0;
+        top: 80px;
+        left: 0%;
+    }
+
+    #menu-items.open {
+        display: block; /* Afficher le menu lorsque la classe 'open' est présente */
+        z-index: 99 !important;;
+        opacity: 1 !important;
+    }
+    #menu-header-1{
+        list-style-type: none;
+        position: fixed;
+        padding:0;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        top: 40%;
+        left: 35%;
+
+    }
+    #menu-header-1 a{
+        color: #FFFFFF;
+        text-decoration: none;
+        font-family: 'Space Mono', monospace;
+        font-size: 44px;
+        font-weight: 400;
+        line-height: 65px;
+        letter-spacing: 0em;
+        text-transform: uppercase;
+    }
+    /* fade-in menu */
+    .fade-in-menu {
+        animation: fade-in 1.5s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+    #filter-category, #filter-format, #filter-trier_par {
+        margin-left: 0;
+    }
+    .main-navigation{
+        display: flex;
+        align-items: center;
+    }
+    #primary .site-main .entry-content {
+        display:flex;
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+    }
+    #primary .site-main .entry-content .image {
+        position: relative;
+        margin: 0;
+        width: 768px;
+    }
+    #primary .site-main .entry-content .image img {
+        object-fit: cover;
+    }
+    header {
+        margin-bottom: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    #primary .site-main .entry-content .description {
+        width: 100%;
+        margin-top: 1%;
+        margin-left: 0%;
+        margin-right: -18%;
+        transform-origin: top;
+        border-bottom: none;
+    }
+    .entry-header {
+        padding-bottom: 0%;
+    }
+    .entry-title{
+        margin: 0;
+    }
+    .bloc{
+        border-top: 1px solid rgba(0, 0, 0, 1);
+        margin-bottom: 40px;
+    }
+    .entry-title {
+        font-size: 46px;
+        line-height: 48px;
+    }
+    .image figure {
+        display: flex;
+        justify-content: center;
+    }
+    .bloc31{
+        display: none;
+    }
+    .bloc3 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .apparenté p {
+        margin: 30px 0;
+        display: flex;
+        justify-content: center;
+    }
+    .apparenté{
+        margin: 0;
+    }
+    .deuxphotos {
+        display: flex;
+        justify-content: center;
+        flex-direction: column-reverse;
+    }
+    .deuxphotos img {
+        width: 317.66px;
+        height: 278.8px;
+        margin :0;
+    }
+    .ttes-photos {
+        margin: 0;
+    }
+    .bouton {
+        margin: 30px 0 40px 0;
+    }
+    .fa-solid {
+        top: 7%;
+    }
+    .cat-ref div{
+        top: 80%;
+    }
+    /* header { 
+        transition: opacity 2.5s ease-in-out; 
+    } */
+    /* Définissez l'animation de translation */
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 1 !important;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1 !important;
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(100%);
+        }
+    }
+
+    header.menu-opening{
+        animation-name: slideIn; 
+        transition: opacity 0.3s ease; 
+        animation-duration: 0.3s;
+        opacity: 1;
+    }
+
+    header.menu-closing{
+        animation-name: slideOut; 
+        transition: opacity 0.3s ease; 
+        animation-duration: 0.3s;
+    }
+
+    #menu-items.menu-opening {
+        animation-name: slideIn; 
+        transition: opacity 0.3s ease; 
+        animation-duration: 0.3s;
+        opacity: 1;
+    }
+
+    #menu-items.menu-closing{
+        animation-name: slideOut; 
+        transition: opacity 0.3s ease; 
+        animation-duration: 0.3s;
+        display: block;
+    }
+
+    #menu-header-1.menu-opening{
+        animation-name: slideIn; 
+        transition: opacity 0.3s ease; 
+        animation-duration: 0.3s;
+        opacity: 1;
+    }
 }
