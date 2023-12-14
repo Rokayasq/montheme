@@ -8,8 +8,8 @@ add_action( 'after_setup_theme', 'register_my_menu' );
 //ajouter le logo
 function custom_theme_setup() {
     add_theme_support('custom-logo', array(
-        'height'      => 22,
-        'width'       => 344.51,
+        'height'      => 14,
+        'width'       => 216,
         'flex-height' => true,
         'flex-width'  => true,
     ));
@@ -35,14 +35,12 @@ function ajouter_script_js() {
 }
 add_action('wp_enqueue_scripts', 'ajouter_script_js');
 
-//page contact modale
-function ajouter_code_sur_page_contact() {
-    if (is_page('contact')) {
-        get_header(); 
-        get_template_part( 'templates_parts/templates_part' );
-    }
+// LIGHTBOX
+function ajouter_lightbox_js() {    
+    wp_enqueue_script('lightbox', get_stylesheet_directory_uri() . '/js/lightbox.js', array('jquery'), false, true);
 }
-add_action('wp', 'ajouter_code_sur_page_contact');
+
+add_action('wp_enqueue_scripts', 'ajouter_lightbox_js');
 
 //script.js
 function enqueue_custom_scripts() {
@@ -121,9 +119,38 @@ function capitaine_load_photos() {
                     // Ajoutez le lien vers l'article complet
                     $post_url = get_permalink();
                     ?>
-                    <a href="<?php echo esc_url($post_url); ?>">
-                        <?php the_content(); ?>
-                    </a>
+                    <?php the_content(); ?>
+                    <div>
+                        <a href="<?php echo esc_url($post_url); ?>" onclick="openLightbox('<?php echo esc_url(wp_get_attachment_url(get_post_thumbnail_id())); ?>')">
+                            <i class="fa-regular fa-eye fa-2xl"></i>
+                        </a>
+                        <div class="overlay" id="overlay"></div>
+                        <i class="fa-solid fa-expand" id="openModalIcon"></i>
+                        <div  class="cat-ref">
+                            <div class="categorie">
+                                <?php
+                                $taxonomy = 'categorie';
+                                $post_id = get_the_ID();
+                                $categories = get_the_terms($post_id, $taxonomy);
+                                if (is_array($categories) && !empty($categories)) {
+                                    echo '<p>';
+                                    foreach ($categories as $category) {
+                                        echo $category->name;
+                                    }
+                                    echo '</p>';
+                                }
+                                ?>
+                            </div>
+                            <div class="reference">
+                                <?php
+                                $photo_reference = get_field('reference');
+                                if ($photo_reference) {
+                                    echo '<p>' . esc_html($photo_reference) . '</p>';
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </article>
     <?php
@@ -164,16 +191,50 @@ function filter_images_cat() {
             $query->the_post();
             ?>
             <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
+                <div class="entry-content">
                 <?php
-                // Récupérez l'URL de la page associée à l'image
-                $post_permalink = get_permalink();
-
-                // Affichez vos images ici, enveloppées dans une balise <a>
-                echo '<a href="' . esc_url($post_permalink) . '">';
-                echo '<img class="image" src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '">';
-                echo '</a>';
-                ?>
+                    // Ajoutez le lien vers l'article complet
+                    $post_url = get_permalink();
+                    ?>
+                    <?php 
+                    echo '<img class="image-filtre" src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '">'; 
+                    echo '<div class="image-overlay"></div>';
+                    ?>
+                    <div>
+                        <a href="<?php echo esc_url($post_url); ?>" onclick="openLightbox('<?php echo esc_url(wp_get_attachment_url(get_post_thumbnail_id())); ?>')">
+                            <i class="fa-regular fa-eye fa-2xl"></i>
+                        </a>
+                        <div class="overlay" id="overlay"></div>
+                        <i class="fa-solid fa-expand" id="openModalIcon"></i>
+                        <div  class="cat-ref">
+                            <div class="categorie">
+                                <?php
+                                $taxonomy = 'categorie';
+                                $post_id = get_the_ID();
+                                $categories = get_the_terms($post_id, $taxonomy);
+                                if (is_array($categories) && !empty($categories)) {
+                                    echo '<p>';
+                                    foreach ($categories as $category) {
+                                        echo $category->name;
+                                    }
+                                    echo '</p>';
+                                }
+                                ?>
+                            </div>
+                            <div class="reference">
+                                <?php
+                                $photo_reference = get_field('reference');
+                                if ($photo_reference) {
+                                    echo '<p>' . esc_html($photo_reference) . '</p>';
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </article>
+
             <?php
         }
         wp_reset_postdata();
@@ -209,15 +270,47 @@ function filter_images_format() {
             $query->the_post();
             ?>
             <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
+                <div class="entry-content">
                 <?php
-                // Récupérez l'URL de la page associée à l'image
-                $post_permalink = get_permalink();
-
-                // Affichez vos images ici, enveloppées dans une balise <a>
-                echo '<a href="' . esc_url($post_permalink) . '">';
-                echo '<img class="image" src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '">';
-                echo '</a>';
-                ?>
+                    // Ajoutez le lien vers l'article complet
+                    $post_url = get_permalink();
+                    ?>
+                    <?php 
+                    echo '<img class="image-filtre" src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '">'; 
+                    echo '<div class="image-overlay"></div>';
+                    ?>                    <div>
+                        <a href="<?php echo esc_url($post_url); ?>" onclick="openLightbox('<?php echo esc_url(wp_get_attachment_url(get_post_thumbnail_id())); ?>')">
+                            <i class="fa-regular fa-eye fa-2xl"></i>
+                        </a>
+                        <div class="overlay" id="overlay"></div>
+                        <i class="fa-solid fa-expand" id="openModalIcon"></i>
+                        <div  class="cat-ref">
+                            <div class="categorie">
+                                <?php
+                                $taxonomy = 'categorie';
+                                $post_id = get_the_ID();
+                                $categories = get_the_terms($post_id, $taxonomy);
+                                if (is_array($categories) && !empty($categories)) {
+                                    echo '<p>';
+                                    foreach ($categories as $category) {
+                                        echo $category->name;
+                                    }
+                                    echo '</p>';
+                                }
+                                ?>
+                            </div>
+                            <div class="reference">
+                                <?php
+                                $photo_reference = get_field('reference');
+                                if ($photo_reference) {
+                                    echo '<p>' . esc_html($photo_reference) . '</p>';
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </article>
             <?php
         }
@@ -271,14 +364,49 @@ function filter_images_date() {
                 while ($query->have_posts()) {
                     $query->the_post();
                     ?>
-                    <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
-                        <?php
-                        $post_permalink = get_permalink();
-                        echo '<a href="' . esc_url($post_permalink) . '">';
-                        echo '<img class="image" src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '">';
-                        echo '</a>';
-                        ?>
-                    </article>
+            <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
+                <div class="entry-content">
+                <?php
+                    // Ajoutez le lien vers l'article complet
+                    $post_url = get_permalink();
+                    ?>
+                    <?php 
+                    echo '<img class="image-filtre" src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '">'; 
+                    echo '<div class="image-overlay"></div>';
+                    ?>                    <div>
+                        <a href="<?php echo esc_url($post_url); ?>" onclick="openLightbox('<?php echo esc_url(wp_get_attachment_url(get_post_thumbnail_id())); ?>')">
+                            <i class="fa-regular fa-eye fa-2xl"></i>
+                        </a>
+                        <div class="overlay" id="overlay"></div>
+                        <i class="fa-solid fa-expand" id="openModalIcon"></i>
+                        <div  class="cat-ref">
+                            <div class="categorie">
+                                <?php
+                                $taxonomy = 'categorie';
+                                $post_id = get_the_ID();
+                                $categories = get_the_terms($post_id, $taxonomy);
+                                if (is_array($categories) && !empty($categories)) {
+                                    echo '<p>';
+                                    foreach ($categories as $category) {
+                                        echo $category->name;
+                                    }
+                                    echo '</p>';
+                                }
+                                ?>
+                            </div>
+                            <div class="reference">
+                                <?php
+                                $photo_reference = get_field('reference');
+                                if ($photo_reference) {
+                                    echo '<p>' . esc_html($photo_reference) . '</p>';
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </article>
                     <?php
                 }
                 wp_reset_postdata();
@@ -296,13 +424,6 @@ function filter_images_date() {
 add_action('wp_ajax_filter_images_date', 'filter_images_date');
 add_action('wp_ajax_nopriv_filter_images_date', 'filter_images_date');
 
-
-// LIGHTBOX
-function ajouter_lightbox_js() {    
-    wp_enqueue_script('lightbox', get_stylesheet_directory_uri() . '/js/lightbox.js', array('jquery'), false, true);
-}
-
-add_action('wp_enqueue_scripts', 'ajouter_lightbox_js');
 
 // font awesome
 function enqueue_font_awesome() {
