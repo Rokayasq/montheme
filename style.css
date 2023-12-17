@@ -1,25 +1,22 @@
 html{
     margin-top: 0px !important;
 }
-
 body{
     margin: 0;
     overflow-x: hidden;
 }
 
+/* HEADER */
 header{
     display: flex !important;
     height: 80px;
     justify-content: space-between;
-
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
 .header-menu{
     display: flex;
     align-items: center;
 }
-
 .header-menu ul{
     font-family: 'Space Mono', monospace;
     font-size: 16px;
@@ -32,24 +29,22 @@ header{
     margin-right: 150px;
     white-space: nowrap;
 }
-
 #logo{
     display: flex;
     align-items: center;
     margin-left: 50px;
 }
-
 #logo img{
     width: 216px;
     height: 14px;
 }
-
 .header-menu ul li a{
     margin-left: 50px;
     text-decoration: none;
     color: rgba(0, 0, 0, 1);
 }
 
+/* FOOTER */
 .footer-content ul{
     font-family: 'Space Mono', monospace;
     font-size: 16px;
@@ -60,25 +55,19 @@ header{
     display: flex;
     justify-content: space-around;
 }
-
 .footer-content ul li a{
     text-decoration: none;
     color: rgba(0, 0, 0, 1);
 }
-
 .footer-content{
     border-top: 1px solid rgba(0, 0, 0, 1);
     height: 40px;
 }
 
-/* MODALE */
-/* Modal Header */
-
+/* MODALE  DE CONTACT*/
 #ContactModal .modal-header {
     padding: 15px 0;
 }
-
-/* Modal Content */
 #ContactModal .modal-content {
     display: none;
     position: fixed;
@@ -89,18 +78,12 @@ header{
     margin: auto;
     padding: 0;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    /* -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s; 
-    animation-name: animatetop;
-    animation-duration: 0.4s; */
     width: 597px;
     height: 769px;
     border: 5px solid rgba(0, 0, 0, 1);
     opacity: 1;
     z-index: 1000;
 }
-
- /* CONTact */
  .contact-overlay{
     display: none;
     position: fixed;
@@ -125,7 +108,6 @@ header{
     width: 263px;
     height: 40px;
 }
-
 [name="your-email"]{
     border: 1px solid rgba(184, 187, 194, 1);
     border-radius: 8px;
@@ -138,14 +120,12 @@ header{
     width: 263px;
     height: 40px;
 }
-
 [name="your-message"]{
     border: 1px solid rgba(184, 187, 194, 1);
     border-radius: 8px;
     width: 263px;
     height: 210px;
 }
-
 p .wpcf7-submit{
     height: 50px !important;
     font-family: 'Space Mono', monospace;
@@ -158,8 +138,7 @@ p .wpcf7-submit{
     background: rgba(216, 216, 216, 1);
 }
 
-
-/* Police Google Fonts */
+/* POLICES GOOGLE FONTS */
 @font-face {
     font-family: 'Space Mono';
     src: url('assets/fonts/Space_Mono/SpaceMono-Regular.woff2') format("woff2");
@@ -167,7 +146,6 @@ p .wpcf7-submit{
     font-style: normal;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Space Mono';
     src: url('assets/fonts/Space_Mono/SpaceMono-Italic.woff2') format("woff2");
@@ -175,7 +153,6 @@ p .wpcf7-submit{
     font-style: italic;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Space Mono';
     src: url('assets/fonts/Space_Mono/SpaceMono-BoldItalic.woff2') format("woff2");
@@ -183,7 +160,6 @@ p .wpcf7-submit{
     font-style: italic;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Poppins';
     src: url('assets/fonts/Poppins/Poppins-Medium.woff2') format("woff2");
@@ -191,7 +167,6 @@ p .wpcf7-submit{
     font-style: normal;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Poppins';
     src: url('assets/fonts/Poppins/Poppins-Light.woff2') format("woff2");
@@ -200,28 +175,22 @@ p .wpcf7-submit{
     font-display: swap;
 }
 
-/* Page INFOS */
+/* PAGE SINGLE PHOTO */
 #primary{
     padding: 0;
 }
-
 #content .site-main article{
     object-fit: cover;
-    margin-right: 2vh;
+    margin-right: 0vh;
 }
-
 #content .site-main article img{
-
     margin-right: 0;
 }
-
-
 #content .site-main{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-
 #primary .site-main .entry-content .description{
     width: 50%;
     border-bottom: 1px solid rgba(0, 0, 0, 1);
@@ -229,18 +198,15 @@ p .wpcf7-submit{
     margin-left: 20px;
     margin-right: 20px;
 }
-
 #primary .site-main .entry-content .image{
     width: calc(50% - 30px);
     margin-bottom: 20px;
     margin-right: 20px;
 }
-
 #primary .site-main .entry-content{
     display: flex;
     align-items: flex-end;
 }
-
 .entry-title{
     font-family: 'Space Mono', monospace;
     font-size: 66px;
@@ -250,21 +216,10 @@ p .wpcf7-submit{
     text-transform: uppercase;
     width: 50%;
 }
-
 .entry-header{
     padding-bottom: 100px;
 }
-
-.champs{
-    font-family: 'Space Mono', monospace;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 21px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
-
-.taxonomies{
+.champs, .taxonomies{
     font-family: 'Space Mono', monospace;
     font-size: 14px;
     font-weight: 400;
@@ -304,13 +259,12 @@ p .wpcf7-submit{
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
-
 .ctct-bouton:hover {
     background-color: rgba(0, 0, 0, 1);
     color: rgba(255, 255, 255, 1);
 }
-
 .apparenté p{
     font-family: 'Space Mono', monospace;
     font-size: 18px;
@@ -320,24 +274,19 @@ p .wpcf7-submit{
     text-transform: uppercase;
     margin: 80px 0 50px 0;
 }
-
 .apparenté{
     margin-left: 20px;
     border-top: 1px solid rgba(0, 0, 0, 1);
 }
-
 .deuxphotos img{
     width: 564px;
     height: 495px;
     object-fit: cover;
-    /* margin-right: 2vh; */
 }
-
 .deuxphotos{
     display: flex;
     justify-content: center;
 }
-
 .ttes-photos {
     width: 272px;
     Height: 50px;
@@ -353,13 +302,12 @@ p .wpcf7-submit{
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
-
 .ttes-photos:hover {
     background-color: rgba(0, 0, 0, 1);
     color: rgba(255, 255, 255, 1);
     }
-
 .bouton{
     display: flex;
     justify-content: center;
@@ -372,25 +320,21 @@ p .wpcf7-submit{
     height: 962px;
     object-fit: cover;
 }
-
 #hero-content .site-main{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .image-container {
     position: relative;
     text-align: center;
 }
-
 .image-title {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
 .image-title h2{
     font-family: 'Space Mono', monospace;
     font-size: 96px;
@@ -402,8 +346,7 @@ p .wpcf7-submit{
     white-space: nowrap; /* Empêche le texte de se replier sur plusieurs lignes */
 }
 
-
-/* charger plus */
+/* CHARGER PLUS */
 .photos{
     margin: 0;
     display: flex;
@@ -412,18 +355,14 @@ p .wpcf7-submit{
     justify-content: center;
     padding: 0;
 }
-
 .photos article{
-    margin-right: 2vh
+    margin-right: 0vh !important;
 }
-
-
 .photos article img {
     width: 564px;
     height: 495px;
     object-fit: cover;
 }
-
 .photos-load-button{
     width: 272px;
     Height: 50px;
@@ -439,78 +378,39 @@ p .wpcf7-submit{
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
-
 .photos-load-button:hover {
     background-color: rgba(0, 0, 0, 1);
     color: rgba(255, 255, 255, 1);
 }
-
 .js-load-photos{
     display: flex;
     justify-content: center;
     margin: 30px 0 50px 0;
     }
+
 /* FILTRES */
 .images{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-
 .images img{
     width: 564px;
     height: 495px;
     object-fit: cover;
 }
-
 .images article{
     margin-right: 14px;
-    margin-bottom: 8px;
 }
-
 .image{
     margin-bottom: 2vh;
 }
-
- /* #filter-container {
-    cursor: pointer;
-    align-items: center;
-    width: 260px;
-    height: 42px;
-    border-radius: 8px;
-    border: 1px solid rgba(184, 187, 194, 1);
-    margin-right: 30px;
-    display: flex;
-} */
-
-/* #filter-category, #filter-format, #filter-trier_par{
-    border: none;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: 0.03em;
-    cursor: inherit;
-    appearance: none;
-    margin-left: 20px;
-}  */
-
-/* #filter-container::after {
-    content: "";
-    width: 0.8em;
-    height: 0.5em;
-    background-color: rgba(49, 49, 68, 1);
-    clip-path: polygon(0 0, 50% 100%, 100% 0); 
-    margin-left: auto;
-    margin-right: 20px;
-} */
-
 .filtres{
     display: flex;
     margin: 80px 20px 50px 20px;
 }
-
 #filter-category, #filter-format, #filter-trier_par{
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
@@ -524,27 +424,18 @@ p .wpcf7-submit{
     width: 260px;
     padding-left: 20px;
 } 
-
 .trier{
     margin-left: auto;
 }
-
 #filter-container option:hover {
     background-color: rgba(255, 214, 214, 1);
 }
-
 #filter-container option:focus {
     background-color: rgba(254, 88, 88, 1);
 }
-
 #filter-container option:active {
     background-color: rgba(224, 0, 0, 1);
 }
-
-/* .image-filtre{
-    margin:1vh 1vh;
-} */
-
 .image-overlay {
     position: absolute;
     top: 0;
@@ -553,13 +444,11 @@ p .wpcf7-submit{
     height: 99%;
     background-color: rgba(0, 0, 0, 0.5); /* Fond noir transparent à 80% */
     opacity: 0;
-    /* padding: 10px; */
 }
-
 .entry-content:hover .image-overlay {
     opacity: 1;
-
 }
+
 /* LIGHTBOX */
 .lightbox {
     position: fixed;
@@ -572,7 +461,6 @@ p .wpcf7-submit{
     height: 100%;
     transition: opacity .3s;
 }
-
 .lightbox__container {
     display: flex;
     justify-content: center;
@@ -580,7 +468,6 @@ p .wpcf7-submit{
     min-height: 100vh;
     margin: 0 50px;
   }
-
 .lightbox__next{
     border: none;
     background: url(../montheme/assets/images/arrow-nxt.svg) center center / 93px 18px no-repeat;
@@ -597,11 +484,9 @@ p .wpcf7-submit{
     transition: transform 0.3s;
     color:white;
   }
-
 .lightbox__next:hover{
     background: url(../montheme/assets/images/arrow-nxt-hover.svg) center center / 93px 18px no-repeat;
 }
-
 .lightbox__prev{
     border: none;
     background: url(../montheme/assets/images/arrow-prv.svg) center center / 93px 18px no-repeat;
@@ -619,11 +504,9 @@ p .wpcf7-submit{
     right: auto;
     left: 0;    
   }
-
 .lightbox__prev:hover{
     background: url(../montheme/assets/images/arrow-prv-hover.svg) center center / 93px 18px no-repeat;
 }
-
 .lightbox__close{
     width: 23px;
     height: 23px;
@@ -636,25 +519,21 @@ p .wpcf7-submit{
     z-index: 12;
     cursor: pointer;
 }
-
 .lightbox__container img{
     max-width: 85%;
     height: auto;
   }
-
 .lightbox__container {
     margin: 0 100px ;
   }
-
 .lightbox .fadeOut{
     opacity: 0;
 }
 
-/* Icones */
+/* AU SURVOL DES IMAGES*/
 .entry-content {
     position: relative;
 }
-
 .fa-eye {
     position: absolute;
     top: 50%;
@@ -664,12 +543,10 @@ p .wpcf7-submit{
     opacity:0;
     display: none;
 }
-
-
 .fa-solid {
     position: absolute;
-    top: 5%;
-    right: 0;
+    top: 8%;
+    right: 2%;
     transform: translate(-50%, -50%);
     color: white;
     opacity:0;
@@ -682,8 +559,6 @@ p .wpcf7-submit{
     align-items: center;
     border-radius: 50%;
 }
-
-
 .images figure{
     position: relative;
     display: inline-block; 
@@ -699,8 +574,6 @@ p .wpcf7-submit{
     height: calc(100% - 20px);
     background-color: rgba(0, 0, 0, 0.5); 
 }
-
-
 .overlay {
     display: none;
     position: fixed;
@@ -712,12 +585,11 @@ p .wpcf7-submit{
     z-index: 1; /* Set the overlay above other elements */
   }
 
-/* Styles for the modal content */
+/* STYLES DES IMAGES AU SURVOL */
 #openModalIcon {
   z-index: 1; 
   cursor: pointer;
 }
-
 .categorie{
     color: white;
     z-index:1;
@@ -747,10 +619,14 @@ p .wpcf7-submit{
     opacity:0;
     display: none;
 }
+.apparenté .cat-ref div{
+    top: 75%;
+}  
 .main-navigation{
     display: none;
 }
-/* NAVIGATION PAGE SINGLE */
+
+/* MINIATURE */
 .bloc31{
     position: relative;
     margin-right: 20px;
@@ -759,7 +635,7 @@ p .wpcf7-submit{
     display: flex;
     flex-direction: column;
 }
-.nav-next{
+.navigation-arrows .nav-next a{
     background: url(../montheme/assets/images/nav-next.svg) center center / 93px 18px no-repeat;
     width: 100%;
     height: 100%;
@@ -769,7 +645,7 @@ p .wpcf7-submit{
     cursor: pointer;
     transform: scale(0.5);
   }
-.nav-prev{
+  .navigation-arrows .nav-prev a{
     background: url(../montheme/assets/images/nav-prev.svg) center center / 93px 18px no-repeat;
     width: 100%;
     height: 100%;
@@ -780,18 +656,19 @@ p .wpcf7-submit{
     transform: scale(0.5);
 }
 .petite-img img{
+    opacity: 0;
+}
+.petite-img img{
     position: relative;
     width: 81px;
     height: 71px;
     object-fit: cover;
     top: -20px;
 }
-.nav-next img{
-    display: flex;
-}
 
-/* MOBIILE 767.98px */
+/* MOBIILE 768px */
 @media only screen and (max-width: 768px) { 
+
     /* HERO */
     #hero-content .site-main article img {
         height: 253px;
@@ -804,6 +681,8 @@ p .wpcf7-submit{
         font-weight: 700;
         line-height: 40.86px;
     }
+
+    /* CONTENU */
     .images img {
         width: 317.66px;
         height: 278.8px;
@@ -829,6 +708,8 @@ p .wpcf7-submit{
         flex-direction: column;
         align-items: center;
     }
+
+    /* FILTRES */
     .filtres {
         overflow-x: auto;
         margin: 20px 20px 40px 20px;
@@ -836,7 +717,20 @@ p .wpcf7-submit{
     #filter-category, #filter-format, #filter-trier_par {
         width: 270px;
         height: 43px;
+        margin-left: 0;
     }
+
+    /* HEADER */
+    header {
+        margin-bottom: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    #logo img{
+        width: 138px;
+        height: 9px;
+    }
+
+    /* FOOTER */
     .footer-content ul {
         display: flex;
         flex-direction: column;
@@ -844,19 +738,16 @@ p .wpcf7-submit{
         height: 208px ;
         padding-left: 0px;
     }
+    
+    /* MENU BURGER */
     .header-menu {
         display: none; /* Par défaut, le bouton est caché */
         cursor: pointer;
     }
-
-    #logo img{
-        width: 138px;
-        height: 9px;
-    }
-    
-    /* MENU BURGER */
     .main-navigation{
         margin-right: 50px;
+        display: flex;
+        align-items: center;
     }
     .menu-toggle {
         display: block;
@@ -876,7 +767,6 @@ p .wpcf7-submit{
         top: 80px;
         left: 0%;
     }
-
     #menu-items.open {
         display: block; /* Afficher le menu lorsque la classe 'open' est présente */
         z-index: 99 !important;;
@@ -891,7 +781,6 @@ p .wpcf7-submit{
         text-align: center;
         top: 40%;
         left: 35%;
-
     }
     #menu-header-1 a{
         color: #FFFFFF;
@@ -903,19 +792,55 @@ p .wpcf7-submit{
         letter-spacing: 0em;
         text-transform: uppercase;
     }
-    /* fade-in menu */
-    .fade-in-menu {
-        animation: fade-in 1.5s;
-        animation-iteration-count: 1;
-        animation-fill-mode: forwards;
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 1 !important;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1 !important;
+        }
     }
-    #filter-category, #filter-format, #filter-trier_par {
-        margin-left: 0;
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(100%);
+        }
     }
-    .main-navigation{
-        display: flex;
-        align-items: center;
+    header.menu-opening{
+        animation-name: slideIn; 
+        transition: opacity 0.3s ease; 
+        animation-duration: 0.3s;
+        opacity: 1;
     }
+    header.menu-closing{
+        animation-name: slideOut; 
+        transition: opacity 0.3s ease; 
+        animation-duration: 0.3s;
+    }
+    #menu-items.menu-opening {
+        animation-name: slideIn; 
+        transition: opacity 0.3s ease; 
+        animation-duration: 0.3s;
+        opacity: 1;
+    }
+    #menu-items.menu-closing{
+        animation-name: slideOut; 
+        transition: opacity 0.3s ease; 
+        animation-duration: 0.3s;
+        display: block;
+    }
+    #menu-header-1.menu-opening{
+        animation-name: slideIn; 
+        transition: opacity 0.3s ease; 
+        animation-duration: 0.3s;
+        opacity: 1;
+    }
+
+    /* PAGE SINGLE PHOTO */
     #primary .site-main .entry-content {
         display:flex;
         flex-wrap: wrap-reverse;
@@ -928,10 +853,6 @@ p .wpcf7-submit{
     }
     #primary .site-main .entry-content .image img {
         object-fit: cover;
-    }
-    header {
-        margin-bottom: 20px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
     #primary .site-main .entry-content .description {
         width: 100%;
@@ -992,67 +913,26 @@ p .wpcf7-submit{
     .bouton {
         margin: 30px 0 40px 0;
     }
+
+    /* IMAGES AU SURVOL */
     .fa-solid {
-        top: 7%;
+        top: 5%;
+        right: 5%;
+        transform: scale(0.8);
+    }
+    .fa-eye {
+        position: absolute;
+        top: 50%;
+        left: 45%;
+        transform: translate(-50%, -50%);
+        transform: scale(0.8);
     }
     .cat-ref div{
         top: 80%;
+        transform: scale(0.8);
     }
-    /* header { 
-        transition: opacity 2.5s ease-in-out; 
-    } */
-    /* Définissez l'animation de translation */
-    @keyframes slideIn {
-        from {
-            transform: translateX(100%);
-            opacity: 1 !important;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1 !important;
-        }
-    }
-
-    @keyframes slideOut {
-        from {
-            transform: translateX(0);
-        }
-        to {
-            transform: translateX(100%);
-        }
-    }
-
-    header.menu-opening{
-        animation-name: slideIn; 
-        transition: opacity 0.3s ease; 
-        animation-duration: 0.3s;
-        opacity: 1;
-    }
-
-    header.menu-closing{
-        animation-name: slideOut; 
-        transition: opacity 0.3s ease; 
-        animation-duration: 0.3s;
-    }
-
-    #menu-items.menu-opening {
-        animation-name: slideIn; 
-        transition: opacity 0.3s ease; 
-        animation-duration: 0.3s;
-        opacity: 1;
-    }
-
-    #menu-items.menu-closing{
-        animation-name: slideOut; 
-        transition: opacity 0.3s ease; 
-        animation-duration: 0.3s;
-        display: block;
-    }
-
-    #menu-header-1.menu-opening{
-        animation-name: slideIn; 
-        transition: opacity 0.3s ease; 
-        animation-duration: 0.3s;
-        opacity: 1;
-    }
+    .apparenté .cat-ref div{
+        top: 75%;
+        transform: scale(0.8);
+    }  
 }
