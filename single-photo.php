@@ -20,9 +20,9 @@ get_header(); ?>
             <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                 <div class="entry-content">
                     <div class="description">
-                        <header class="entry-header">
+                        <div class="entry-header">
                             <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
-                        </header>
+                        </div>
 
                         <div class="champs">
                             <?php
@@ -106,7 +106,6 @@ get_header(); ?>
                                 echo 'Aucune date trouvé.';
                             }
                             ?>
-
                         </div>
                     </div>
                     <div class="image">
@@ -115,15 +114,33 @@ get_header(); ?>
                         the_content();
                         ?>
                     </div>
-
                 </div>
-                <div class="bloc3">
-                    <p> Cette photo vous intéresse ? </p>   
-                    <div>
-                        <button class="ctct-bouton">Contact</button>
+                <div class="bloc">
+                    <div class="bloc3">
+                        <p> Cette photo vous intéresse ? </p>   
+                        <div>
+                            <button id="btn-ctct" class="ctct-bouton">Contact</button>
+                        </div>
+                    </div>
+                    <div class="bloc31">  
+                        <div class="petite-img">
+                            <img>
+                            <?php
+                            // Afficher le contenu de la publication
+                            $prev_post = get_previous_post();
+                            $next_post = get_next_post();
+                            // Get the URL of the featured image for the previous post
+                            $prev_image_url = $prev_post ? get_the_post_thumbnail_url($prev_post->ID) : '';
+                            // Get the URL of the featured image for the next post
+                            $next_image_url = $next_post ? get_the_post_thumbnail_url($next_post->ID) : '';
+                            ?>
+                        </div>
+                        <div class="navigation-arrows">
+                            <div class="nav-prev"><?php previous_post_link('%link', '<img src="' . esc_url($prev_image_url) . '" style="display:none">'); ?></div>
+                            <div class="nav-next"><?php next_post_link('%link', '<img src="' . esc_url($next_image_url) . '" style="display:none">'); ?></div>
+                        </div>
                     </div>
                 </div>
-
                 <div class="apparenté">
                     <p> Vous aimerez AUSSI</p>   
                     <div class="deuxphotos">
@@ -132,7 +149,6 @@ get_header(); ?>
                     $current_photo_id = get_the_ID();
                     // Get the current photo's categories
                     $current_photo_categories = wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'ids'));
-                    // Boucle WordPress pour récupérer les articles du type de contenu "photo" dans la même catégorie
                     $args = array(
                         'post_type' => 'photo',
                         'posts_per_page' => 2,  
@@ -152,15 +168,51 @@ get_header(); ?>
                         while ($photo_query->have_posts()) :
                             $photo_query->the_post();
                     ?>
-                            <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
+                            <article class="images" id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
 
                                 <div class="entry-content">
                                     <?php
                                     // Ajoutez le lien vers l'article complet
                                     $post_url = get_permalink();
                                     ?>
-                                    <a href="<?php echo esc_url($post_url); ?>">
                                         <?php the_content(); ?>
+                                        <div>
+                                            <a href="<?php echo esc_url($post_url); ?>">
+                                                <i class="fa-regular fa-eye fa-2xl"></i>
+                                            </a>
+                                            <div class="overlay" id="overlay"></div>
+                                            <i class="fa-solid fa-expand" id="openModalIcon"></i>
+                                            <div  class="cat-ref">
+                                                <div class="categorie">
+                                                <?php
+                                                    $taxonomy = 'categorie';
+                                                    $post_id = get_the_ID();
+
+                                                    // Récupérer toutes les catégories de la taxonomie associées à cet article
+                                                    $categories = get_the_terms($post_id, $taxonomy);
+
+                                                    if (is_array($categories) && !empty($categories)) {
+                                                        echo '<p>';
+
+                                                        foreach ($categories as $category) {
+                                                            echo $category->name;
+                                                        }
+
+                                                        echo '</p>';
+                                                    }
+                                                    ?>
+                                                </div>
+                                                <div class="reference">
+                                                <?php
+                                                    // Afficher les champs personnalisés        
+                                                    $photo_reference = get_field('reference');
+                                                    if ($photo_reference) {
+                                                        echo '<p>' . esc_html($photo_reference) . '</p>';
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </a>
                                 </div>
                             </article>
@@ -175,7 +227,9 @@ get_header(); ?>
                     ?>
                     </div>
                     <div class="bouton">
+                    <a href="http://localhost:8888/Nathalie-mota/">
                         <button class="ttes-photos">Toutes les photos</button>
+                    </a>
                     </div>
                 </div>
 
