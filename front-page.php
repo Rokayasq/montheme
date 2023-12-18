@@ -1,14 +1,15 @@
 <?php
 get_header(); 
 ?>
-<!-- hero header  -->
+
+<!-- HERO HEADER -->
 <div id="hero-content" class="site-content">
     <main id="main" class="site-main">
         <?php
         // Boucle WordPress pour récupérer les articles du type de contenu "photo"
         $args = array(
             'post_type' => 'photo', // Nom du custom post type
-            'posts_per_page' => 1,  // Afficher tous les articles, vous pouvez ajuster cela selon vos besoins
+            'posts_per_page' => 1,
             'orderby' => 'rand', // image aléatoire
         );
 
@@ -116,10 +117,9 @@ get_header();
             echo '<option value="recentes" class="trier-par-option" data-sort="DESC">Plus récentes</option>' ;
             echo '<option value="anciennes" class="trier-par-option" data-sort="ASC">Plus anciennes</option>' ;
             echo '</select>';
-        } 
+        }
         ?>
     </div>
-
 </div>   
 
 <!-- 8 premieres photos -->
@@ -129,7 +129,7 @@ get_header();
     <?php
     // Boucle WordPress pour récupérer les articles du type de contenu "photo"
     $args = array(
-        'post_type' => 'photo', // Nom du custom post type
+        'post_type' => 'photo',
         'posts_per_page' => 8, 
         'order'          => 'ASC',
     );
@@ -149,7 +149,7 @@ get_header();
             ?>
             <?php the_content(); ?>
             <div>
-                <a href="<?php echo esc_url($post_url); ?>" onclick="openLightbox('<?php echo esc_url(wp_get_attachment_url(get_post_thumbnail_id())); ?>')">
+                <a href="<?php echo esc_url($post_url); ?>">
                     <i class="fa-regular fa-eye fa-2xl"></i>
                 </a>
                 <div class="overlay" id="overlay"></div>
@@ -203,7 +203,7 @@ get_header();
         </main>
     </div>
 
-<!-- Charger plus -->
+<!-- CHARGER PLUS -->
 <?php if (wp_count_posts('photo')->publish) : ?>
 
     <form 
