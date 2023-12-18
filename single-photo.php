@@ -38,11 +38,8 @@ get_header(); ?>
                             <?php
                             // Récupérer et afficher les catégories personnalisées (taxonomies)
                             // CATEGORIES
-                            // Remplacez 'nom_de_la_taxonomie' par le nom de votre taxonomie
                             $categorie = 'categorie';
-                            // Remplacez 'nom_du_post_type' par le nom de votre type de publication personnalisé (CPT)
                             $post_type = 'photo';
-                            // Remplacez $post_id par l'ID de votre article personnalisé
                             $post_id = get_the_ID();
                             // Récupérer les termes de taxonomie associés à l'article
                             $categories = get_terms(array(
@@ -129,9 +126,9 @@ get_header(); ?>
                             // Afficher le contenu de la publication
                             $prev_post = get_previous_post();
                             $next_post = get_next_post();
-                            // Get the URL of the featured image for the previous post
+                            // Obtenir l'URL de l'image pour l'article précédent
                             $prev_image_url = $prev_post ? get_the_post_thumbnail_url($prev_post->ID) : '';
-                            // Get the URL of the featured image for the next post
+                            // Obtenir l'URL de l'image pour l'article suivant 
                             $next_image_url = $next_post ? get_the_post_thumbnail_url($next_post->ID) : '';
                             ?>
                         </div>
@@ -145,9 +142,7 @@ get_header(); ?>
                     <p> Vous aimerez AUSSI</p>   
                     <div class="deuxphotos">
                     <?php
-                    // Get the current photo's ID
                     $current_photo_id = get_the_ID();
-                    // Get the current photo's categories
                     $current_photo_categories = wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'ids'));
                     $args = array(
                         'post_type' => 'photo',
@@ -159,7 +154,7 @@ get_header(); ?>
                                 'terms' => $current_photo_categories,
                             ),
                         ),
-                        'post__not_in' => array($current_photo_id), // Exclude the current photo
+                        'post__not_in' => array($current_photo_id), // Exclure la photo actuelle
                     );
 
                     $photo_query = new WP_Query($args);
@@ -235,13 +230,12 @@ get_header(); ?>
 
             </article>
 
-        <?php endwhile; // Fin de la boucle WordPress. ?>
+        <?php endwhile; ?>
 
-    </main><!-- #main -->
-</div><!-- #primary -->
+    </main>
+</div>
 
 <?php
-// Inclure la barre latérale et le pied de page du site WordPress
-// get_sidebar();
+
 get_footer();
 ?>

@@ -21,7 +21,7 @@
         <?php
         wp_nav_menu([
             'theme_location' => 'main-menu',
-            'container'      => false // On retire le conteneur généré par WP
+            'container'      => false 
             
         ]);
         ?>
@@ -42,7 +42,7 @@
                 <?php
                 wp_nav_menu([
                     'theme_location' => 'main-menu',
-                    'container'      => false // On retire le conteneur généré par WP
+                    'container'      => false 
                 ]);
                 ?>
             </div>  
