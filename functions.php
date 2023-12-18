@@ -1,10 +1,12 @@
 <?php
+//
 //header 
 function register_my_menu() {
     register_nav_menu( 'main-menu' , __( 'Menu principal', 'text-domain' ) );
 }
 add_action( 'after_setup_theme', 'register_my_menu' );
 
+//
 //ajouter le logo
 function custom_theme_setup() {
     add_theme_support('custom-logo', array(
@@ -16,12 +18,14 @@ function custom_theme_setup() {
 }
 add_action('after_setup_theme', 'custom_theme_setup');
 
+//
 //footer 
 function register_footer() {
     register_nav_menu( 'footer-menu' , __( 'footer', 'text-domain' ) );
 }
 add_action( 'after_setup_theme', 'register_footer' );
 
+//
 //css
 function enqueue_custom_styles() {
     wp_enqueue_style('custom-styles', get_template_directory_uri() . '/style.css');
@@ -29,34 +33,22 @@ function enqueue_custom_styles() {
 
 add_action('wp_enqueue_scripts', 'enqueue_custom_styles');
 
-//js
-function ajouter_script_js() {
-    wp_enqueue_script('scripts', get_template_directory_uri() . '/js/scripts.js', array(),false , true);
-}
-add_action('wp_enqueue_scripts', 'ajouter_script_js');
-
-// LIGHTBOX
-function ajouter_lightbox_js() {    
-    wp_enqueue_script('lightbox', get_stylesheet_directory_uri() . '/js/lightbox.js', array('jquery'), false, true);
-}
-
-add_action('wp_enqueue_scripts', 'ajouter_lightbox_js');
-
-//script.js
+//
+//scripts.js
 function enqueue_custom_scripts() {
     // Enqueue jQuery
     wp_enqueue_script('jquery');
 
-    // Enqueue your custom script
+    // Enqueue scripts.js
     wp_enqueue_script(
         'custom-ajax-script',
-        get_template_directory_uri() . '/js/script.js',
-        array('jquery'), // Dependencies (jQuery in this case)
-        '1.0',           // Script version
-        true             // Load the script in the footer
+        get_template_directory_uri() . '/js/scripts.js',
+        array('jquery'), 
+        '1.0',           
+        true           
     );
 
-    // Localize the script with the appropriate data
+    // Localisation des variables JavaScript
     wp_localize_script(
         'custom-ajax-script',
         'customAjaxVars',
@@ -66,15 +58,23 @@ function enqueue_custom_scripts() {
         )
     );
 
-    // Passer la valeur de ajaxurl à votre script JavaScript
+    // Passer la valeur de ajaxurl à votre script JavaScript / Localisation d'une autre variable JavaScript
     wp_localize_script('custom-ajax-script', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
 }
 
-// Hook the function to the wp_enqueue_scripts action
+// Action pour charger les scripts
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
+//
+// LIGHTBOX
+function ajouter_lightbox_js() {    
+    wp_enqueue_script('lightbox', get_stylesheet_directory_uri() . '/js/lightbox.js', array('jquery'), false, true);
+}
 
-//charger plus
+add_action('wp_enqueue_scripts', 'ajouter_lightbox_js');
+
+//
+// CHARGER PLUS
 add_action('wp_ajax_capitaine_load_photos', 'capitaine_load_photos');
 add_action('wp_ajax_nopriv_capitaine_load_photos', 'capitaine_load_photos');
 
@@ -98,9 +98,8 @@ function capitaine_load_photos() {
 
     // Requête des photos (custom post type: 'photo')
     $args = array(
-        'post_type'      => $post_type, // Use the custom post type 'photo'
+        'post_type'      => 'photo', 
         'posts_per_page' => 8,
-        'offset'         => $offset,
     );
 
     $photos_query = new WP_Query($args);
@@ -167,8 +166,8 @@ function capitaine_load_photos() {
     wp_send_json_success($html);
 }
 
+//
 //FILTRES
-
 
 //CATEGORIES
 function filter_images_cat() {
@@ -176,10 +175,10 @@ function filter_images_cat() {
 
     // Utilisez WP_Query pour récupérer les images de la catégorie sélectionnée
     $query = new WP_Query(array(
-        'post_type' => 'photo', // Assurez-vous que le type de publication est correct
+        'post_type' => 'photo',
         'tax_query' => array(
             array(
-                'taxonomy' => 'categorie', // Assurez-vous que le nom de la taxonomie est correct
+                'taxonomy' => 'categorie',
                 'field' => 'id',
                 'terms' => $category_id,
             ),
@@ -193,7 +192,7 @@ function filter_images_cat() {
             <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
                 <div class="entry-content">
                 <?php
-                    // Ajoutez le lien vers l'article complet
+                    // Lien vers l'article complet
                     $post_url = get_permalink();
                     ?>
                     <?php 
@@ -253,12 +252,11 @@ add_action('wp_ajax_nopriv_filter_images_cat', 'filter_images_cat'); // Hook pou
 function filter_images_format() {
     $format_id = $_POST['format_id'];
 
-    // Utilisez WP_Query pour récupérer les images de la catégorie sélectionnée
     $query = new WP_Query(array(
-        'post_type' => 'photo', // Assurez-vous que le type de publication est correct
+        'post_type' => 'photo', 
         'tax_query' => array(
             array(
-                'taxonomy' => 'format', // Assurez-vous que le nom de la taxonomie est correct
+                'taxonomy' => 'format', 
                 'field' => 'id',
                 'terms' => $format_id,
             ),
@@ -272,7 +270,6 @@ function filter_images_format() {
             <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
                 <div class="entry-content">
                 <?php
-                    // Ajoutez le lien vers l'article complet
                     $post_url = get_permalink();
                     ?>
                     <?php 
@@ -321,18 +318,18 @@ function filter_images_format() {
 
     die();
 }
-add_action('wp_ajax_filter_images_format', 'filter_images_format'); // Hook pour les utilisateurs connectés
-add_action('wp_ajax_nopriv_filter_images_format', 'filter_images_format'); // Hook pour les utilisateurs non connectés
+add_action('wp_ajax_filter_images_format', 'filter_images_format'); 
+add_action('wp_ajax_nopriv_filter_images_format', 'filter_images_format'); 
 
 
-// Date
+// DATE
 function filter_images_date() {
-    $sort_direction = $_POST['filter']; // 'anciennes' or 'recentes'
+    $sort_direction = $_POST['filter']; // 'anciennes' ou 'recentes'
 
     if ($sort_direction == 'anciennes') {
-        $sort_direction = 'ASC'; // Order by oldest first
+        $sort_direction = 'ASC'; 
     } elseif ($sort_direction == 'recentes') {
-        $sort_direction = 'DESC'; // Order by newest first
+        $sort_direction = 'DESC';
     }
 
     // Récupérer les termes de la taxonomie 'trier_par'
@@ -367,7 +364,6 @@ function filter_images_date() {
             <article id="post-<?php the_ID(); ?>" <?php post_class('block'); ?>>
                 <div class="entry-content">
                 <?php
-                    // Ajoutez le lien vers l'article complet
                     $post_url = get_permalink();
                     ?>
                     <?php 
@@ -424,8 +420,8 @@ function filter_images_date() {
 add_action('wp_ajax_filter_images_date', 'filter_images_date');
 add_action('wp_ajax_nopriv_filter_images_date', 'filter_images_date');
 
-
-// font awesome
+//
+// FONT AWESOME
 function enqueue_font_awesome() {
     wp_enqueue_style(
         'font-awesome',
