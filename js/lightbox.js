@@ -1,7 +1,7 @@
+// ICONE OEIL
 function add_eye_icon() {
     const figures = document.querySelectorAll('.images .entry-content');
 
-    // Iterate through each element with the class 'wp-block-image'
     Array.from(figures).forEach(figure => {
         figure.addEventListener('mouseover', () => {
             const eyeIcon = figure.querySelector(".fa-eye");
@@ -17,6 +17,7 @@ function add_eye_icon() {
     }
 );}
 
+// ICONE FULL SCREEN
 function add_full_screen() {
     const figures = document.querySelectorAll('.images .entry-content');
 
@@ -35,6 +36,7 @@ function add_full_screen() {
     });
 }
 
+// CAT & REF
 function add_cat_ref() {
     const figures = document.querySelectorAll('.images .entry-content');
 
@@ -56,14 +58,14 @@ function add_cat_ref() {
 // Affichage de l'icone oeil
 document.addEventListener('DOMContentLoaded', add_eye_icon);
 
-// affichage de l'icone full screen
+// Affichage de l'icone full screen
 document.addEventListener('DOMContentLoaded', add_full_screen) ;
 
-// affichage Cat & Ref
+// Affichage Cat & Ref
 document.addEventListener('DOMContentLoaded', add_cat_ref) ;
 
+//
 // LIGHTBOX
-
 /**
  * @property {HTMLElement} element
  * @property {string[]} images Chemins des images de la lighbox
@@ -71,35 +73,33 @@ document.addEventListener('DOMContentLoaded', add_cat_ref) ;
 */
 class Lightbox {
     static init() {
-        console.log("INIT INSIDE")
         var lightbox_initialized = false;
+        
+        const page_contains_photos = (document.getElementsByClassName("photos").length >= 1)
+
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("Init the lighbot for the first time")
             this.init_lightbox(".images")
             lightbox_initialized = true
         });
 
-        if (lightbox_initialized == false){
-            console.log("Clicked on Charger plus !!! ")
+        if (lightbox_initialized == false & page_contains_photos){
             this.init_lightbox(".photos");
         }
-        
+
+        else {
+            this.init_lightbox(".images")
+        }
     }
 
     static init_lightbox(image_group_class){
         const links =Array.from(document.querySelectorAll(image_group_class+' .entry-content .fa-solid'));  
             const images =Array.from(document.querySelectorAll(image_group_class+' .entry-content > figure > img'));   
-            console.log("images",images) 
             const gallery= images.map( link=> link.getAttribute('src'))   
-            console.log("gallery",gallery)     
             links.forEach(link => {
-                console.log(link)
                 link.addEventListener('click', e => {
                     e.preventDefault();
-                    console.log(e.currentTarget.querySelector("img"))
                     const Url = e.currentTarget.parentElement.parentElement.querySelector("img").getAttribute('src');
                     new Lightbox(Url, gallery);
-                    console.log(Url)
                 })
             });
     }
@@ -137,13 +137,9 @@ class Lightbox {
      * @param {MouseEvent} e
      */
     close (e) {
-        console.log('closing')
         e.preventDefault()
-        // const element = document.querySelector('.lightbox')
         this.element.classList.add('fadeOut')
-        window.setTimeout(() => {
-            this.element.parentElement.removeChild(this.element)
-        },500)
+        this.element.parentElement.removeChild(this.element)
     }
 
      /**
@@ -152,12 +148,9 @@ class Lightbox {
     next (e) {
         e.preventDefault()
         let i = this.images.findIndex(image => image === this.url)
-        console.log("Current Image", i, this.images[i])
         if (i === this.images.length - 1) {
           i = -1
         }
-        console.log("Current Image", i, this.images[i])
-        console.log("Loading Image",i+1, this.images[i + 1])
         this.loadImage(this.images[i + 1])
     }
 
@@ -178,11 +171,8 @@ class Lightbox {
      * @return {HTMLElement}
      */
     buildDOM(url) { 
-        console.log("Biulding Dom")        
         const dom = document.createElement('div');
-        console.log("Add Lightbox")
         dom.classList.add('lightbox');
-        console.log("Change inner HTML")
         dom.innerHTML = `
             <button class="lightbox__close">Fermer</button>
             <button class="lightbox__next">Suivant</button>
@@ -192,11 +182,8 @@ class Lightbox {
             </div>
         `;
         dom.querySelector('.lightbox__close').addEventListener('click', this.close.bind(this));
-        console.log("Add Event Listeners 2")
         dom.querySelector('.lightbox__next').addEventListener('click', this.next.bind(this));
-        console.log("Add Event Listeners 3")
         dom.querySelector('.lightbox__prev').addEventListener('click', this.prev.bind(this));
-        console.log("Return dom")
         this.url = url
         return dom;
     }
