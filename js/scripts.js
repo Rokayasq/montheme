@@ -27,7 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
     )
     
     // Pareil pour le bouton contact dans la page single-photo
-    document.getElementById('btn-ctct').addEventListener('click', openContact);  
+    var btnCtct = document.getElementById('btn-ctct');
+        if (btnCtct) {
+        btnCtct.addEventListener('click', openContact);
+    }
 
     // MENU BURGER
     // Au click sur le burger menu, enlever le scroll pour n'afficher que le menu. Utile pour la version Mobile
